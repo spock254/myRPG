@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8ff2189b2a09544891643e061022df, type: 3}
+  m_Name: Helmet1
+  m_EditorClassIdentifier: 
+  id: 2
+  uiDisplay: {fileID: -7296337056529428220, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
+    type: 3}
+  typeOfItem: 1
+  Description: This is a test item
+  buffs:
+  - attrebute: 3
+    value: 0
+    min: 12
+    max: 23
