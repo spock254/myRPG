@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TurnToWall : MonoBehaviour {
 
-	public GameManager Game;
+	[SerializeField] NPCAStar npc;
 	
 	//[SerializeField]
 	//NPCAStar npc;
@@ -20,6 +20,16 @@ public class TurnToWall : MonoBehaviour {
 	//		Debug.Log("RESED" + npc.endGridPosition.x.ToString() + " : " + npc.endGridPosition.y.ToString());
 	//	}
 	//}
+
+	private void OnMouseDown()
+	{
+		string[] splitter = this.gameObject.name.Split(',');
+	//	npc.endGridPosition = new NPCAStar.GridPosition(int.Parse(splitter[0]), int.Parse(splitter[1]));
+
+
+	//	Debug.Log(npc.endGridPosition.x.ToString() + " " + npc.endGridPosition.y.ToString());
+
+	}
 
 	//void OnMouseDown()
 	//{

@@ -3,15 +3,12 @@
 
 public class GameManager : MonoBehaviour 
 {
+	public GameObject npc;
 
-	public GameObject enemy;
-	
-	
 	public Grid gridMap = new Grid();
 
 	//public static string distanceType;
 	//public static int distance = 2;
-
 
 	void Start () 
 	{
@@ -22,14 +19,11 @@ public class GameManager : MonoBehaviour
 
 		//instantiate enemy object
 		CreateEnemy ();
-
-	
 	}
-
 
 	void CreateEnemy()
 	{
-		GameObject nb = (GameObject)GameObject.Instantiate (enemy);
+		GameObject nb = (GameObject)GameObject.Instantiate(npc);
 		nb.SetActive (true);
 	}
 

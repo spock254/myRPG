@@ -40,7 +40,7 @@ public class Grid
 			for (int j = 0; j < gridWidth; j++)
 			{
 				GameObject nobj = (GameObject)GameObject.Instantiate(gridBox);
-				nobj.transform.position = new Vector2(gridBox.transform.position.x + (gridSize * j), gridBox.transform.position.y + (0.87f * i));
+				nobj.transform.position = new Vector2(gridBox.transform.position.x + (gridSize * j), gridBox.transform.position.y + (i));
 				nobj.name = j + "," + i;
 
 				nobj.gameObject.transform.parent = gridBox.transform.parent;
