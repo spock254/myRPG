@@ -9,16 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8ff2189b2a09544891643e061022df, type: 3}
-  m_Name: Boots1
+  m_Script: {fileID: 11500000, guid: c4e29ead7e6f99a439f7dd355148973f, type: 3}
+  m_Name: boots1
   m_EditorClassIdentifier: 
   id: 2
-  uiDisplay: {fileID: 6471586766639389086, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
+  uiDisplay: {fileID: 7431443166627799094, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
     type: 3}
   typeOfItem: 5
-  Description: This is a test item
-  buffs:
-  - attrebute: 3
-    value: 0
-    min: 12
-    max: 23
+  Description: 
+  buffs: []

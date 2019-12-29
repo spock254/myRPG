@@ -9,16 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ae7c1cd62f3df498e0959fd6159428, type: 3}
-  m_Name: Sword1
+  m_Script: {fileID: 11500000, guid: cd51387ddf9cfe34cbafedc88c413a9b, type: 3}
+  m_Name: sword1
   m_EditorClassIdentifier: 
-  id: 7
-  uiDisplay: {fileID: -6447425667752118579, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
+  id: 6
+  uiDisplay: {fileID: 871815484178006130, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
     type: 3}
   typeOfItem: 2
   Description: 
-  buffs:
-  - attrebute: 3
-    value: 0
-    min: 11
-    max: 14
+  buffs: []

@@ -6,7 +6,7 @@ public enum ItemType
 {
     Food,
     Helment,
-    Weapon,
+    Sword,
     Shild,
     Chest,
     Boots,

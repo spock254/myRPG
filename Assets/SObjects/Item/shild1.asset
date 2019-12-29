@@ -9,20 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ae7c1cd62f3df498e0959fd6159428, type: 3}
-  m_Name: Shild
+  m_Script: {fileID: 11500000, guid: 8cfbef7db5495a64c8c18944d52ae5a3, type: 3}
+  m_Name: shild1
   m_EditorClassIdentifier: 
-  id: 6
+  id: 5
   uiDisplay: {fileID: 4551601812578344196, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
     type: 3}
   typeOfItem: 3
   Description: 
-  buffs:
-  - attrebute: 3
-    value: 0
-    min: 10
-    max: 12
-  - attrebute: 1
-    value: 0
-    min: 1
-    max: 3
+  buffs: []

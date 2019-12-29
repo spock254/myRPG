@@ -72,10 +72,15 @@ public class NPCAStar : MonoBehaviour {
 	void Start () 
 	{
 		//test
-		tasks.AddTask(new Task(new GridPosition(10, 7), true));
-		tasks.AddTask(new Task(new GridPosition(3, 1), true));
-		tasks.AddTask(new Task(new GridPosition(15, 15), true));
-		tasks.AddTask(new Task(new GridPosition(4, 12), true));
+		tasks.AddTask(new Task(new GridPosition(10, 10), 
+								currentGridPosition, 
+								new TaskDuration(0, 0)));
+		tasks.AddTask(new Task(new GridPosition(2, 14),
+								currentGridPosition,
+								new TaskDuration(0, 0)));
+		tasks.AddTask(new Task(new GridPosition(2, 4),
+								currentGridPosition,
+								new TaskDuration(14, 12)));
 
 
 		myColor = getRandomColor();
@@ -101,11 +106,6 @@ public class NPCAStar : MonoBehaviour {
 		this.GetComponent<Renderer>().material.color = myColor;
 	}
 
-
-	public GridPosition SetNewEndPosition(int x, int y) 
-	{
-		return new GridPosition(x, y);
-	}
 
 	public void findUpdatedPath(int currentX,int currentY)
 	{

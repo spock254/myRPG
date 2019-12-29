@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Default Object",
-                 menuName = "InventorySystem/Item/Armor")]
-public class ArmorItem : ObjectItem
+                 menuName = "InventorySystem/Item/Chest")]
+public class ChestItem : ObjectItem
 {
     private void Awake()
     {

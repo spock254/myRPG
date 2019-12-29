@@ -9,20 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e70f72ae26f7684dbf92860f2fb4965, type: 3}
-  m_Name: Apple
+  m_Script: {fileID: 11500000, guid: dec397103654673479d5b3d850809372, type: 3}
+  m_Name: chest1
   m_EditorClassIdentifier: 
-  id: 1
-  uiDisplay: {fileID: -2319894896770420943, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
+  id: 3
+  uiDisplay: {fileID: 3475101186164888376, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
     type: 3}
-  typeOfItem: 0
+  typeOfItem: 4
   Description: 
-  buffs:
-  - attrebute: 2
-    value: 0
-    min: 1
-    max: 3
-  - attrebute: 2
-    value: 0
-    min: 1
-    max: 2
+  buffs: []

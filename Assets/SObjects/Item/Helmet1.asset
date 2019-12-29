@@ -9,16 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8ff2189b2a09544891643e061022df, type: 3}
-  m_Name: Helmet1
+  m_Script: {fileID: 11500000, guid: 407719817b95a234c880abb6c3f2cf7c, type: 3}
+  m_Name: helmet1
   m_EditorClassIdentifier: 
-  id: 5
-  uiDisplay: {fileID: -7296337056529428220, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
-    type: 3}
+  id: 4
+  uiDisplay: {fileID: 92988425954246417, guid: dff07b1628fb71f4ea8bf5aca5bea1b3, type: 3}
   typeOfItem: 1
-  Description: This is a test item
-  buffs:
-  - attrebute: 3
-    value: 0
-    min: 12
-    max: 23
+  Description: 
+  buffs: []
