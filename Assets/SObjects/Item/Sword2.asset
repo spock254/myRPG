@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ae7c1cd62f3df498e0959fd6159428, type: 3}
   m_Name: Sword2
   m_EditorClassIdentifier: 
-  id: 6
+  id: 8
   uiDisplay: {fileID: 871815484178006130, guid: dff07b1628fb71f4ea8bf5aca5bea1b3,
     type: 3}
   typeOfItem: 2

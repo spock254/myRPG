@@ -12,7 +12,7 @@ public class DynamicInterface : UserInterface
     [SerializeField]
     Vector2 slotStart = new Vector2(0, 0);
     [SerializeField]
-    int columNumbers = 5;
+    int columNumbers = 4;
 
     public override void CreateSlots()
     {
