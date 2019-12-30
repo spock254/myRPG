@@ -53,12 +53,15 @@ public class Task
     public NPCAStar.GridPosition position;
     public NPCAStar.GridPosition currentPosition;
     public TaskDuration duration;
+    public List<ITaskAction> taskActions;
     public UnityEvent OnTask = new UnityEvent();
+    public bool IsActionsFinished = false;
 
     public Task() { }
     public Task(NPCAStar.GridPosition position, 
                 NPCAStar.GridPosition currentPosition,
-                TaskDuration duration) 
+                TaskDuration duration, 
+                List<ITaskAction> taskActions) 
     {
         if (position == null)
         {
@@ -69,16 +72,24 @@ public class Task
         if (currentPosition == null)
         {
             Debug.LogError("currentPosition is null");
+            return;
+        }
+
+        if (taskActions == null)
+        {
+            Debug.LogError("taskActions is null");
             return;
         }
 
         this.position = position;
         this.currentPosition = currentPosition;
         this.duration = duration;
+        this.taskActions = taskActions;
     }
 
     public Task(NPCAStar.GridPosition position,
-            NPCAStar.GridPosition currentPosition)
+            NPCAStar.GridPosition currentPosition,
+            List<ITaskAction> taskActions)
     {
         if (position == null)
         {
@@ -92,9 +103,16 @@ public class Task
             return;
         }
 
+        if (taskActions == null)
+        {
+            Debug.LogError("taskActions is null");
+            return;
+        }
+
         this.position = position;
         this.currentPosition = currentPosition;
         this.duration = new TaskDuration();
+        this.taskActions = taskActions;
     }
 
     public void UpdateCurrentPosition(NPCAStar.GridPosition currentPosition) 
@@ -113,50 +131,47 @@ public class Task
             && this.position.y == nextPosition.y;
     }
 
-    public void StartTask() 
-    {
-        if (ComparePositions(currentPosition) == true)
-        {
-            //start dicris duration TODO
-            OnTask.Invoke();
-        }
-    }
-
-    // Coroutine task execution
-    //public IEnumerator StartTaskExec() 
-    //{
-    //    Debug.Log("TASK EXECUTION");
-    //    yield return new WaitForSeconds(5.1f);
-    //}
-
     public bool IsTaskOver() 
     {
         return this.duration.Hours == 0
             && this.duration.Days == 0;
     }
+
+    public void ProcessActions() 
+    {
+        foreach (ITaskAction action in this.taskActions)
+        {
+            action.Action();
+        }
+    }
 }
 
 public struct TaskDuration
 {
-    int hours;
-    int days;
+    float hours;
+    float days;
 
-    public int Hours 
+    public float Hours 
     { 
         get { return hours; } 
         set { if (days >= 0) { this.hours = value; } } 
     }
 
-    public int Days
+    public float Days
     {
         get { return days; }
         set { if (days >= 0) { this.days = value; } }
     }
 
-    public TaskDuration(int hours, int days) 
+    public TaskDuration(float hours, float days) 
     {
         this.hours = hours;
         this.days = days;
     }
 
+}
+
+public interface ITaskAction 
+{
+    void Action();
 }
