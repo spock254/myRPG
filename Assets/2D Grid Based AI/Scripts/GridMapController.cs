@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class GridMapController : MonoBehaviour 
+public class GameManager : MonoBehaviour 
 {
 	public Grid gridMap = new Grid();
 

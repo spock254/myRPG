@@ -122,6 +122,13 @@ public class Task
         }
     }
 
+    // Coroutine task execution
+    //public IEnumerator StartTaskExec() 
+    //{
+    //    Debug.Log("TASK EXECUTION");
+    //    yield return new WaitForSeconds(5.1f);
+    //}
+
     public bool IsTaskOver() 
     {
         return this.duration.Hours == 0

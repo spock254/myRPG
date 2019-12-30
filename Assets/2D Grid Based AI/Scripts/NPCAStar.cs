@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+
 public class NPCAStar : MonoBehaviour {
 
-	public GameManager Game;
+	public GridMapController mapController;
 
 	public MyPathNode nextNode;
 
@@ -17,7 +18,7 @@ public class NPCAStar : MonoBehaviour {
 	private bool allowDiagonals = false;
 	private bool correctDiagonalSpeed = true;
 	private Vector2 input;
-	private bool isMoving = true;
+	protected bool isMoving = true;
 	private Vector3 startPosition;
 	private Vector3 endPosition;
 	private float t;
@@ -26,7 +27,6 @@ public class NPCAStar : MonoBehaviour {
 
 	public NPCStats stats;
 	public NPCAnimationController animationController;
-	NPCTask tasks = new NPCTask();
 
 	public class MySolver<TPathNode, TUserContext> : SettlersEngine.SpatialAStar<TPathNode, 
 						  TUserContext> where TPathNode : SettlersEngine.IPathNode<TUserContext>
@@ -69,47 +69,34 @@ public class NPCAStar : MonoBehaviour {
 		}
 	} 
 
-	void Start () 
+	public void InitNPCAStar() 
 	{
-		//test
-		tasks.AddTask(new Task(new GridPosition(10, 10), 
-								currentGridPosition, 
-								new TaskDuration(0, 0)));
-		tasks.AddTask(new Task(new GridPosition(2, 14),
-								currentGridPosition,
-								new TaskDuration(0, 0)));
-		tasks.AddTask(new Task(new GridPosition(2, 4),
-								currentGridPosition,
-								new TaskDuration(14, 12)));
-
 
 		myColor = getRandomColor();
 
-		startGridPosition = new GridPosition(5,5);
+		startGridPosition = new GridPosition(5, 5);
 		//test
-		endGridPosition = tasks.PeekTask().position;
-		//endGridPosition = startGridPosition;
+		//endGridPosition = tasks.PeekTask().position;
+		endGridPosition = startGridPosition;
 		//endGridPosition = new gridPosition(Game.gridWidth-1,UnityEngine.Random.Range(0,Game.gridHeight-1));
-		initializePosition ();
+		initializePosition();
 
-		MySolver<MyPathNode, System.Object> aStar = new MySolver<MyPathNode, System.Object>(Game.gridMap.grid);
+		MySolver<MyPathNode, System.Object> aStar = new MySolver<MyPathNode, System.Object>(mapController.gridMap.grid);
 		IEnumerable<MyPathNode> path = aStar.Search(new Vector2(startGridPosition.x, startGridPosition.y), new Vector2(endGridPosition.x, endGridPosition.y), null);
 
-		foreach(GameObject g in GameObject.FindGameObjectsWithTag("GridBox"))
+		foreach (GameObject g in GameObject.FindGameObjectsWithTag("GridBox"))
 		{
 			g.GetComponent<Renderer>().material.color = Color.white;
 		}
-
 
 		UpdatePath();
 
 		this.GetComponent<Renderer>().material.color = myColor;
 	}
 
-
 	public void findUpdatedPath(int currentX,int currentY)
 	{
-		MySolver<MyPathNode, System.Object> aStar = new MySolver<MyPathNode, System.Object>(Game.gridMap.grid);
+		MySolver<MyPathNode, System.Object> aStar = new MySolver<MyPathNode, System.Object>(mapController.gridMap.grid);
 		IEnumerable<MyPathNode> path = aStar.Search(new Vector2(currentX, currentY), new Vector2(endGridPosition.x, endGridPosition.y), null);
 
 		int x = 0;
@@ -149,18 +136,6 @@ public class NPCAStar : MonoBehaviour {
 
 	}
 	
-	
-
-	void Update () 
-	{
-		//test
-
-		if (!isMoving) 
-		{
-			StartCoroutine(Move());
-		}
-	}
-	
 	public class GridPosition
 	{
 		public int x =0;
@@ -191,23 +166,16 @@ public class NPCAStar : MonoBehaviour {
 		startPosition = transform.position;
 		t = 0;
 
-		if (tasks.PeekTask().ComparePositions(currentGridPosition))
-		{
-			Debug.Log("IN");
-			tasks.RemoveLastTask();
-			endGridPosition = tasks.PeekTask().position;
-		}
-
 		if (gridOrientation == Orientation.Horizontal) 
 		{
-			endPosition = new Vector2(startPosition.x + System.Math.Sign(input.x) * Game.gridMap.gridSize,
+			endPosition = new Vector2(startPosition.x + System.Math.Sign(input.x) * mapController.gridMap.gridSize,
 			                          startPosition.y);
 			currentGridPosition.x += System.Math.Sign(input.x);
 		} 
 		else 
 		{
-			endPosition = new Vector2(startPosition.x + System.Math.Sign(input.x) * Game.gridMap.gridSize,
-			                          startPosition.y + System.Math.Sign(input.y) * Game.gridMap.gridSize);
+			endPosition = new Vector2(startPosition.x + System.Math.Sign(input.x) * mapController.gridMap.gridSize,
+			                          startPosition.y + System.Math.Sign(input.y) * mapController.gridMap.gridSize);
 			
 			currentGridPosition.x += System.Math.Sign(input.x);
 			currentGridPosition.y += System.Math.Sign(input.y);
@@ -222,10 +190,9 @@ public class NPCAStar : MonoBehaviour {
 			factor = 1f;
 		}
 
-	
 		while (t < 1f) 
 		{
-			t += Time.deltaTime * (stats.MoveSpeed / Game.gridMap.gridSize) * factor;
+			t += Time.deltaTime * (stats.MoveSpeed / mapController.gridMap.gridSize) * factor;
 			transform.position = Vector2.Lerp(startPosition, endPosition, t);
 			yield return null;
 		}
@@ -261,13 +228,12 @@ public class NPCAStar : MonoBehaviour {
 	
 	public Vector2 GetGridPosition(int x, int y)
 	{
-		float contingencyMargin = Game.gridMap.gridSize * 0.10f;
-		float posX = Game.gridMap.gridBox.transform.position.x + (Game.gridMap.gridSize*x) - contingencyMargin;
-		float posY = Game.gridMap.gridBox.transform.position.y + (Game.gridMap.gridSize*y) + contingencyMargin;
+		float contingencyMargin = mapController.gridMap.gridSize * 0.10f;
+		float posX = mapController.gridMap.gridBox.transform.position.x + (mapController.gridMap.gridSize * x) - contingencyMargin;
+		float posY = mapController.gridMap.gridBox.transform.position.y + (mapController.gridMap.gridSize * y) + contingencyMargin;
 		
 		return new Vector2(posX,posY);	
 	}
-	
 	
 	public void initializePosition()
 	{
@@ -276,9 +242,5 @@ public class NPCAStar : MonoBehaviour {
 		currentGridPosition.y = startGridPosition.y;
 		isMoving = false;
 		GameObject.Find(startGridPosition.x + "," + startGridPosition.y).GetComponent<Renderer>().material.color = Color.black; 
-
 	}
-	
-
-
 }
