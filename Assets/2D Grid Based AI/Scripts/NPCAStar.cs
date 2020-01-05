@@ -160,7 +160,6 @@ public class NPCAStar : MonoBehaviour {
 		Vertical
 	};
 
-	
 	public IEnumerator Move() 
 	{
 		isMoving = true;
@@ -199,7 +198,6 @@ public class NPCAStar : MonoBehaviour {
 		}
 		
 		isMoving = false;
-
 		getNextMovement();
 		
 		yield return 0;

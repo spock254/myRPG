@@ -7,7 +7,7 @@ public class NPCController : NPCAStar
     NPCTask tasks = new NPCTask();
     public GameObject npc;
     //public NPCStats stats;
-    float t = 0f;
+   // float t = 0f;
     void Start()
     {
         List<ITaskAction> defauActions = new List<ITaskAction>();

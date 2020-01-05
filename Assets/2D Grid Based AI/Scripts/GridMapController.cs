@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 	{
 		gridMap.CreateGridNodes();
 		gridMap.CreateGrid();
+
+		//var go = GameObject.Find("3,1");
+		//go.GetComponent<Renderer>().material.color = Color.red;
 	}
 
 }
