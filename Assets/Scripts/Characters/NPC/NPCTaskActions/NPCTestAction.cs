@@ -25,3 +25,11 @@ public class NPCTestAction3 : ITaskAction
         Debug.Log("Action 3");
     }
 }
+
+public class NPCDefaultAction : ITaskAction 
+{
+    public void Action()
+    {
+        Debug.Log("Default action");
+    }
+}

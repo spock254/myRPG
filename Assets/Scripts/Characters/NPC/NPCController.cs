@@ -10,6 +10,9 @@ public class NPCController : NPCAStar
     float t = 0f;
     void Start()
     {
+        List<ITaskAction> defauActions = new List<ITaskAction>();
+        defauActions.Add(new NPCDefaultAction());
+
         List<ITaskAction> taskActions1 = new List<ITaskAction>();
         taskActions1.Add(new NPCTestAction());
         taskActions1.Add(new NPCTestAction2());
@@ -27,20 +30,25 @@ public class NPCController : NPCAStar
         taskActions3.Add(new NPCTestAction());
 
 
-        tasks.AddTask(new Task(new NPCAStar.GridPosition(10, 10),
-                                currentGridPosition,
-                                new TaskDuration(3, 0), 
-                                taskActions1));
+        //tasks.AddTask(new Task(new NPCAStar.GridPosition(10, 10),
+        //                        currentGridPosition,
+        //                        new TaskDuration(3, 0), 
+        //                        taskActions1));
 
         tasks.AddTask(new Task(new NPCAStar.GridPosition(2, 14),
                                 currentGridPosition,
-                                new TaskDuration(5, 0), 
+                                new TaskDuration(1, 0), 
                                 taskActions2));
 
         tasks.AddTask(new Task(new NPCAStar.GridPosition(2, 4),
                                 currentGridPosition,
-                                new TaskDuration(2, 0), 
-                                taskActions3));
+                                new TaskDuration(2, 0),
+                                taskActions1));
+
+        tasks.AddTask(new Task(new NPCAStar.GridPosition(7, 7),
+                                currentGridPosition,
+                                new TaskDuration(3, 0),
+                                defauActions, 1));
 
         base.InitNPCAStar();
         endGridPosition = tasks.PeekTask().position;
@@ -50,40 +58,64 @@ public class NPCController : NPCAStar
     }
     void Update()
     {
-        //TODO optim
-        if (tasks.isEmpty() == false)
+        //if (Input.GetKeyDown(KeyCode.Space)) 
+        //{
+        //    List<ITaskAction> taskActions3 = new List<ITaskAction>();
+        //    taskActions3.Add(new NPCTestAction2());
+        //    taskActions3.Add(new NPCTestAction2());
+        //    taskActions3.Add(new NPCTestAction2());
+        //    taskActions3.Add(new NPCTestAction3());
+        //    taskActions3.Add(new NPCTestAction2());
+        //    taskActions3.Add(new NPCTestAction());
+
+        //            tasks.AddTask(new Task(new NPCAStar.GridPosition(2, 2),
+        //                        currentGridPosition,
+        //                        new TaskDuration(2, 0), 
+        //                        taskActions3));
+        //    Debug.Log("ADDED");
+        //    isMoving = false;
+        //}
+
+        ////TODO optim
+        //if (tasks.IsEmpty() == false)
+        //{
+        //    Task task = tasks.PeekTask();
+
+        //    if (task.ComparePositions(currentGridPosition))
+        //    {
+        //        if (task.IsActionsFinished == false) 
+        //        {
+        //            task.ProcessActions();
+
+        //            task.IsActionsFinished = true;
+        //        }
+
+        //        task.duration.Hours -= Time.deltaTime;
+
+        //        if (task.duration.Hours > 0)
+        //        {
+        //            return;
+        //        }
+
+        //        //t = tasks.PeekTask().duration.Hours;
+        //        if (tasks.IsDefaultTask() == true) 
+        //        {
+        //            Debug.Log("DefTASK");
+        //            return;
+        //        }
+
+        //        tasks.RemoveLastTask();
+
+        //        if (tasks.IsEmpty() == false)
+        //        {
+        //            endGridPosition = tasks.PeekTask().position;
+        //        }
+        //    }
+        //else if (isMoving == false)
+        if (isMoving == false)
         {
-            Task task = tasks.PeekTask();
-
-            if (task.ComparePositions(currentGridPosition))
-            {
-                if (task.IsActionsFinished == false) 
-                {
-                    task.ProcessActions();
-
-                    task.IsActionsFinished = true;
-                }
-
-                task.duration.Hours -= Time.deltaTime;
-            
-                if (task.duration.Hours > 0)
-                {
-                    //Debug.Log(t.ToString());
-                    return;
-                }
-
-                //t = tasks.PeekTask().duration.Hours;
-                tasks.RemoveLastTask();
-
-                if (tasks.isEmpty() == false)
-                {
-                    endGridPosition = tasks.PeekTask().position;
-                }
-            }
-            else if (isMoving == false)
-            {
                 StartCoroutine(Move());
-            }
+            
         }
     }
 

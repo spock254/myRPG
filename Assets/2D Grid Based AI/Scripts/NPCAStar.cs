@@ -101,11 +101,12 @@ public class NPCAStar : MonoBehaviour {
 
 		int x = 0;
 
-		if (path != null) {
+		if (path != null) 
+		{
 		
 			foreach (MyPathNode node in path)
 			{
-				if (x==1)
+				if (x == 1)
 				{
 					nextNode = node;
 					break;
@@ -116,7 +117,7 @@ public class NPCAStar : MonoBehaviour {
 
 			foreach(GameObject g in GameObject.FindGameObjectsWithTag("GridBox"))
 			{
-				if(g.GetComponent<Renderer>().material.color != Color.red && g.GetComponent<Renderer>().material.color == myColor) 
+				if (g.GetComponent<Renderer>().material.color != Color.red && g.GetComponent<Renderer>().material.color == myColor) 
 				{ 
 					g.GetComponent<Renderer>().material.color = Color.white;
 				}
@@ -198,7 +199,8 @@ public class NPCAStar : MonoBehaviour {
 		}
 		
 		isMoving = false;
-		getNextMovement ();
+
+		getNextMovement();
 		
 		yield return 0;
 
